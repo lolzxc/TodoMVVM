@@ -1,6 +1,7 @@
 package com.example.todomvvm.ui.todo_list
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Checkbox
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -47,6 +48,15 @@ fun TodoItem(
                     
                 }
             }
+            todo.description?.let{
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(text = it)
+            }
         }
+        Checkbox(
+            checked = todo.isDone,
+            onCheckedChange = { isChecked ->
+                onEvent(TodoListEvent.OnDoneChange(todo, isChecked))
+            } )
     }
 }
